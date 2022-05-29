@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Neuen Artikel hinzufügen</title>
+        <meta charset="utf-8"/>
+    </head>
+    <body>
+        <header>
+            <div class="navigation">
+                <ul>
+                    <li><a href="index.html">Start</a></li>
+                    <li><a href="einProdukt.html">Patches</a></li>
+                    <li><a href="logIn.html">Anmelden </a> &nbsp; <a href="signIn.html">Registrierung</a></li>
+                    <li><a href="warenkorb.html">Warenkorb</a></li>
+                </ul>
+            </div>
+        </header>
+        <h1>Artikel hinzufügen</h1>
+        <form action="" method="post">
+            <label for="name">Name</label>
+            <input type="text" name="vorname" id="vorname" placeholder="Artikelbezeichnung">
+            <br>
+            <label for="price">Preis</label>
+            <input type="number" min="0" name="preis" id="preis" step="0.01" placeholder="Produktpreis">
+            <br>
+            <label for="amount">Menge</label>
+            <input type="number" min="1" step="number" name="menge" id="menge" placeholder="Menge">
+            <br>
+            <label for="name">Beschreibung</label>
+            <textarea type="text" name="beschreibung" id="beschreibung" placeholder="Beschreibung des Artikels" rows="4" cols="60"></textarea>
+            <br>
+            <label for="file">Datei auswählen</label>
+            <input type="file" name="file" id="file" accept="image/png, image/jpeg, image/jpg">
+            <button>Hochladen</button>
+            <br>
+            <button>Artikel hinzufügen</button>
+        </form>
+
+    </body>
+    <footer>
+        <a href=""><p>Über uns</p></a>
+        <a href=""><p>Impressum</p></a>
+        <a href=""><p>Kontakt</p></a>
+    </footer>
+</html>
