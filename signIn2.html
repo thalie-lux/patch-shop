@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Nutzerkonto erstellen</title>
+        <meta charset="utf-8"/>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/uikit.min.css" />
+        <script src="js/uikit.min.js"></script>
+        <script src="js/uikit-icons.min.js"></script>
+    </head>
+
+    <body>
+        <header>
+          <div class="uk-card uk-card-default uk-card-body uk-width-1-2@s">
+              <ul class="uk-nav-default uk-nav-center" uk-nav>
+                    <li><a href="index.html">Start</a></li>
+                    <li><a href="einProdukt.html">Patches</a></li>
+                    <li><a href="logIn.html">Anmelden </a></li>
+                    <li class="uk-active"><a href="signIn.html">Registrierung</a></li>
+                    <li><a href="warenkorb.html">Warenkorb</a></li>
+                </ul>
+            </div>
+        </header>
+        <h1>Nutzerkonto erstellen</h1>
+        <form action="" method="post">
+            <label for="gender_female">Frau</label>
+            <input type="radio" name="geschlecht" value="f" id="gender_female">
+            <br>
+            <label for="gender_male">Mann</label>
+            <input type="radio" name="geschlecht" value="f" id="gender_male">
+            <br>
+            <label for="gender_diverse">keine Angabe</label>
+            <input type="radio" name="geschlecht" value="f" id="gender_diverse">
+            <br>
+            <label for="name">Vorname</label>
+            <input type="text" name="vorname" id="vorname" placeholder="Vorname">
+            <br>
+            <label for="name">Nachname</label>
+            <input type="text" name="nachname" id="nachname" placeholder="Nachname">
+            <br>
+            <label for="name">Mail</label>
+            <input type="email" name="email" id="email" placeholder="vor.nachname@mail.de">
+            <br>
+            <label for="adress">Straße und Hausnummer</label>
+            <input type="text" name="adress" id="adress" placeholder="Deine Adresse">
+            <br>
+            <label for="city">Postleitzahl und Stadt</label>
+            <input type="text" name="adress" id="adress" placeholder="PLZ und Stadt">
+            <br>
+
+
+            <label for=“psw”>Password</label>
+            <input type=“password” id=“psw” name=“psw” pattern=“(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}” title=“Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters” required>
+            <input type=“submit” value=“Submit”>
+
+            
+            <label for="password">Passwort</label>
+            <input type="password" name="password" id="password" placeholder="Bitte gib ein sicheres Passwort ein">
+            <br>
+            <label for="password">Passwort wiederholen</label>
+            <input type="password" name="password" id="password" placeholder="Wiederhole dein Passwort">
+            <br>
+            <button>Nutzerkonto erstellen</button>
+
+        </form>
+
+        <script>
+            var myInput = document.getElementById(“psw”);
+
+            var letter = document.getElementById(“letter”);
+
+            var capital = document.getElementById(“capital”);
+
+            var number = document.getElementById(“number”);
+
+            var length = document.getElementById(“length”)
+
+            myInput.onfocus = function() {
+
+              document.getElementById(“message”).style.display = “block”;
+
+            }
+
+            myInput.onblur = function() {
+
+              document.getElementById(“message”).style.display = “none”;
+
+            }
+
+            myInput.onkeyup = function() {
+
+                var lowerCaseLetters = /[a-z]/g;
+
+              if(myInput.value.match(lowerCaseLetters)) {
+
+                letter.classList.remove(“invalid”);
+
+                letter.classList.add(“valid”);
+
+              } else {
+
+                letter.classList.remove(“valid”);
+
+                letter.classList.add(“invalid”);
+
+            }
+
+            var upperCaseLetters = /[A-Z]/g;
+
+              if(myInput.value.match(upperCaseLetters)) {
+
+                capital.classList.remove(“invalid”);
+
+                capital.classList.add(“valid”);
+
+              } else {
+
+                capital.classList.remove(“valid”);
+
+                capital.classList.add(“invalid”);
+
+              }
+
+              var numbers = /[0-9]/g;
+
+              if(myInput.value.match(numbers)) {
+
+                number.classList.remove(“invalid”);
+
+                number.classList.add(“valid”);
+
+              } else {
+
+                number.classList.remove(“valid”);
+
+                number.classList.add(“invalid”);
+
+              }
+
+              if(myInput.value.length >= 8) {
+
+                length.classList.remove(“invalid”);
+
+                length.classList.add(“valid”);
+
+              } else {
+
+                length.classList.remove(“valid”);
+
+                length.classList.add(“invalid”);
+
+              }
+
+            }
+        </script>
+
+    </body>
+    <footer>
+      <a href="about.html"><p>Über uns</p></a>
+      <a href="impressum.html"><p>Impressum</p></a>
+      <a href="contact.html"><p>Kontakt</p></a>
+    </footer>
+</html>
