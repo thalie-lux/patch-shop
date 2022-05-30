@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Funktionen ausführen auf Knopfdruck</title>
+</head>
+<body>
+    
+<script>   
+    window.addEventListener("load", setup);    
+    function setup() {
+        var elem = document.getElementById("klick-mich4");
+        elem.addEventListener("click", wurzel4);  
+    }
+    
+    function wurzel(zahl) {
+        return Math.sqrt(zahl);
+    }
+    function wurzel1() {
+        var zahl = 10;
+        var ergebnis = wurzel(zahl); 
+        document.getElementById("ausgabe1").innerHTML = ergebnis;
+    }
+    function wurzel2() {
+        var zahl = document.getElementById("zahl").value;
+        var ergebnis = wurzel(zahl); 
+        document.getElementById("ausgabe2").innerHTML = ergebnis;
+    }
+    function wurzel3(zahl) {
+        var ergebnis = wurzel(zahl);
+        document.getElementById("ausgabe3").innerHTML = ergebnis;
+    }
+    
+    function wurzel4() {
+        var zahl = 40;
+        var ergebnis = wurzel(zahl); 
+        document.getElementById("ausgabe4").innerHTML = ergebnis;
+    }
+</script>
+<ol>
+<li>Der Wurzel von 10 ist <span id="ausgabe1"></span><br/>
+    <button type="button" onclick="wurzel1();">Klick mich!</button>
+</li><br/>
+<li>
+Der Wurzel von <input type="number" id="zahl">
+    ist  <span id="ausgabe2"></span><br/>
+    <button type="button" onclick="wurzel2();">Klick mich!</button>
+</li><br/>
+<li>Der Wurzel von 30 ist <span id="ausgabe3"></span><br/>
+    <button type="button" onclick="wurzel3(30);">Klick mich!</button>
+</li><br/>
+<li>Der Wurzel von 40 ist <span id="ausgabe4"></span><br/>
+    <button type="button" id="klick-mich4">Klick mich!</button>
+</li><br/>   
+</ol>
+<noscript>
+    JavaScript ist nicht aktiv!
+</noscript>
+</body>
+</html>
