@@ -8,6 +8,14 @@
         <link rel="stylesheet" href="css/uikit.min.css" />
         <script src="js/uikit.min.js"></script>
         <script src="js/uikit-icons.min.js"></script>
+        <style type="text/css">
+          .invalid {
+            background-color: #dd0000aa;
+          }
+          .valid {
+            background-color: #00dd00aa;
+          }
+        </style>
     </head>
 
     <body>
@@ -48,114 +56,110 @@
             <label for="city">Postleitzahl und Stadt</label>
             <input type="text" name="adress" id="adress" placeholder="PLZ und Stadt">
             <br>
+            <div id="message">
+              Dein Passwort muss jeweils mindestens eins der folgenden Zeichen enthalten:
+              <div id="letter" class="invalid">Kleinbuchstabe</div>
+              <div id="capital" class="invalid">capital</div>
+              <div id="number" class="invalid">number</div>
+              <div id="length" class="invalid">length 5</div>
 
-
-            <label for=“psw”>Password</label>
-            <input type=“password” id=“psw” name=“psw” pattern=“(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}” title= “Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters” required>
+            </div>
+            <label for="password1">Passwort</label>
+            <input type="password" name="password" class="password" placeholder="Bitte gib ein sicheres Passwort ein">
             <br>
-            <input type=“submit” value=“Submit”>
-
-            <br>
-            <label for="password">Passwort</label>
-            <input type="password" name="password" id="password" placeholder="Bitte gib ein sicheres Passwort ein">
-            <br>
-            <label for="password">Passwort wiederholen</label>
-            <input type="password" name="password" id="password" placeholder="Wiederhole dein Passwort">
+            <div id="messageMatch">
+              Die Passwörter stimmen nicht überein.
+            </div>
+            <label for="password2">Passwort wiederholen</label>
+            <input type="password" name="password" class="password" placeholder="Wiederhole dein Passwort">
             <br>
             <button>Nutzerkonto erstellen</button>
 
         </form>
 
         <script>
-            var myInput = document.getElementById(“psw”);
+            var pw1 = document.getElementsByClassName("password")[0]
+            var pw2 = document.getElementsByClassName("password")[1]
 
-            var letter = document.getElementById(“letter”);
-
-            var capital = document.getElementById(“capital”);
-
-            var number = document.getElementById(“number”);
-
-            var length = document.getElementById(“length”)
-
-            myInput.onfocus = function() {
-
-              document.getElementById(“message”).style.display = “block”;
-
+            var letter = document.getElementById("letter");
+            var capital = document.getElementById("capital");
+            var number = document.getElementById("number");
+            var length = document.getElementById("length")
+            document.getElementById("message").style.display = "none";
+            document.getElementById("messageMatch").style.display = "none";
+            pw1.onfocus = function() {
+              document.getElementById("message").style.display = "block";
             }
 
-            myInput.onblur = function() {
-
-              document.getElementById(“message”).style.display = “none”;
-
+            pw1.onblur = function() {
+              document.getElementById("message").style.display = "none";
             }
 
-            myInput.onkeyup = function() {
-
-                var lowerCaseLetters = /[a-z]/g;
-
-              if(myInput.value.match(lowerCaseLetters)) {
-
-                letter.classList.remove(“invalid”);
-
-                letter.classList.add(“valid”);
-
-              } else {
-
-                letter.classList.remove(“valid”);
-
-                letter.classList.add(“invalid”);
-
+            pw2.onfocus = function() {
+              // document.getElementById("message").style.display = "block";
             }
 
-            var upperCaseLetters = /[A-Z]/g;
+            pw2.onblur = function() {
+              // document.getElementById("message").style.display = "none";
+            }
 
-              if(myInput.value.match(upperCaseLetters)) {
+            pw1.onkeyup = function() {
 
-                capital.classList.remove(“invalid”);
-
-                capital.classList.add(“valid”);
-
-              } else {
-
-                capital.classList.remove(“valid”);
-
-                capital.classList.add(“invalid”);
-
-              }
-
+              var lowerCaseLetters = /[a-z]/g;
+              var upperCaseLetters = /[A-Z]/g;
               var numbers = /[0-9]/g;
 
-              if(myInput.value.match(numbers)) {
-
-                number.classList.remove(“invalid”);
-
-                number.classList.add(“valid”);
-
+              if(pw1.value.match(lowerCaseLetters)) {
+                letter.classList.remove("invalid");
+                letter.classList.add("valid");
               } else {
-
-                number.classList.remove(“valid”);
-
-                number.classList.add(“invalid”);
-
+                letter.classList.remove("valid");
+                letter.classList.add("invalid");
               }
 
-              if(myInput.value.length >= 8) {
-
-                length.classList.remove(“invalid”);
-
-                length.classList.add(“valid”);
-
+              if(pw1.value.match(upperCaseLetters)) {
+                capital.classList.remove("invalid");
+                capital.classList.add("valid");
               } else {
-
-                length.classList.remove(“valid”);
-
-                length.classList.add(“invalid”);
-
+                capital.classList.remove("valid");
+                capital.classList.add("invalid");
               }
 
+              if(pw1.value.match(numbers)) {
+                number.classList.remove("invalid");
+                number.classList.add("valid");
+              } else {
+                number.classList.remove("valid");
+                number.classList.add("invalid");
+              }
+
+              if(pw1.value.length >= 5) {
+                length.classList.remove("invalid");
+                length.classList.add("valid");
+              } else {
+                length.classList.remove("valid");
+                length.classList.add("invalid");
+              }
+
+              if(pw1.value.match(lowerCaseLetters) && pw1.value.match(upperCaseLetters) && pw1.value.match(numbers) && pw1.value.length >= 5) {
+                document.getElementById("message").style.display = "none";
+              }
+            }
+            pw2.onkeyup = function() {
+              if(pw1.value != pw2.value && pw1.length != pw2.length ) {
+                document.getElementById("messageMatch").style.display = "block";
+              } else {
+                document.getElementById("messageMatch").style.display = "none";
+              }
+            }
+            pw2.onblur = function() {
+              if(pw1.value != pw2.value) {
+                document.getElementById("messageMatch").style.display = "block";
+              } else {
+                document.getElementById("messageMatch").style.display = "none";
+              }
             }
         </script>
-
     </body>
     <footer>
       <a href="about.html"><p>Über uns</p></a>

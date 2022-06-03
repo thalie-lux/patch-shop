@@ -8,8 +8,13 @@
         <link rel="stylesheet" href="css/uikit.min.css" />
         <script src="js/uikit.min.js"></script>
         <script src="js/uikit-icons.min.js"></script>
+        <style type="text/css">
+          .menge {
+            display: flex;
+          }
+        </style>
     </head>
-    
+
     <body>
         <header>
           <div class="uk-card uk-card-default uk-card-body uk-width-1-2@s">
@@ -32,44 +37,110 @@
                 <th>Gesamtpreis</th>
             </tr>
             <tr>
-                <td><img src="img/beispiel.jpg" alt="Bild von Angel Monsanto III (unsplash)"></td>
-                <td><p>Produkt 1</p></td>
-                <td><p>3,50 €</p></td>
-                <td style="display: flex"><button>-</button><p>1</p><button>+</button></td>
-                <td><p>3,50 €</p></td>
+                <td class="bild"><img src="img/beispiel.jpg" alt="Bild von Angel Monsanto III (unsplash)"></td>
+                <td class="name"><p>Produkt 1</p></td>
+                <td class="preis"><p>3.50 €</p></td>
+                <td><button class="menge minus">-</button>
+                  <p class="anzahl">1</p>
+                  <button class="menge plus">+</button></td>
+                <td class="Produktsumme"><p>3,50 €</p></td>
             </tr>
             <tr>
-                <td><img src="img/beispiel.jpg" alt="Bild von Angel Monsanto III (unsplash)"></td>
-                <td><p>Produkt 2</p></td>
-                <td><p>5,90 €</p></td>
-                <td style="display: flex"><button>-</button><p>2</p><button>+</button></td>
-                <td><p>11,80 €</p></td>
+              <td class="bild"><img src="img/beispiel.jpg" alt="Bild von Angel Monsanto III (unsplash)"></td>
+              <td class="name"><p>Produkt 2</p></td>
+              <td class="preis"><p>3.50 €</p></td>
+              <td><button class="menge minus">-</button>
+                <p class="anzahl">2</p>
+                <button class="menge plus">+</button></td>
+              <td class="Produktsumme"><p>11,80 €</p></td>
             </tr>
             <tr>
-                <td><img src="img/beispiel.jpg" alt="Bild von Angel Monsanto III (unsplash)"></td>
-                <td><p>Produkt 3</p></td>
-                <td><p>2,10 €</p></td>
-                <td style="display: flex"><button>-</button><p>1</p><button>+</button></td>
-                <td><p>2,10 €</p></td>
+              <td class="bild"><img src="img/beispiel.jpg" alt="Bild von Angel Monsanto III (unsplash)"></td>
+              <td class="name"><p>Produkt 3</p></td>
+              <td class="preis"><p>2.10 €</p></td>
+              <td><button class="menge minus">-</button>
+                <p class="anzahl">1</p>
+                <button class="menge plus">+</button></td>
+              <td class="Produktsumme"><p>2,10 €</p></td>
             </tr>
             <tr>
-                <td><img src="img/beispiel.jpg" alt="Bild von Angel Monsanto III (unsplash)"></td>
-                <td><p>Produkt 4</p></td>
-                <td><p>9,99 €</p></td>
-                <td style="display: flex"><button>-</button><p>1</p><button>+</button></td>
-                <td><p>9,99 €</p></td>
+              <td class="bild"><img src="img/beispiel.jpg" alt="Bild von Angel Monsanto III (unsplash)"></td>
+              <td class="name"><p>Produkt 4</p></td>
+              <td class="preis"><p>9.99 €</p></td>
+              <td><button class="menge minus">-</button>
+                <p class="anzahl">1</p>
+                <button class="menge plus">+</button></td>
+              <td class="Produktsumme"><p>9,99 €</p></td>
             </tr>
             <tr>
-                <td><img src="img/beispiel.jpg" alt="Bild von Angel Monsanto III (unsplash)"></td>
-                <td><p>Produkt 5</p></td>
-                <td><p>4,20 €</p></td>
-                <td style="display: flex"><button>-</button><p>3</p><button>+</button></td>
-                <td><p>12,60 €</p></td>
+              <td class="bild"><img src="img/beispiel.jpg" alt="Bild von Angel Monsanto III (unsplash)"></td>
+              <td class="name"><p>Produkt 5</p></td>
+              <td class="preis"><p>4.20 €</p></td>
+              <td><button class="menge minus">-</button>
+                <p class="anzahl">3</p>
+                <button class="menge plus">+</button></td>
+              <td class="Produktsumme"><p>12,60 €</p></td>
             </tr>
         </table>
         <p><strong>Zu zahlen:</strong></p>
-        <h3>39,99 €</h3>
+        <h3 class="summe"></h3>
         <button>Bestellung abschließen</button>
+
+        <script>
+        // var table = document.getElementById("cart");
+        var preise  = document.getElementsByClassName("preis");
+        var anzahl = document.getElementsByClassName("anzahl");
+        var minus  = document.getElementsByClassName("minus");
+        var plus   = document.getElementsByClassName("plus");
+        var Produktsumme   = document.getElementsByClassName("Produktsumme");
+
+        var summe   = document.querySelector(".summe");
+        function summeBerechnen() {
+          let sum = 0;
+          for(let i = 0; i < preise.length; i++) {
+            const gegenstandspreis = parseFloat(preise[i].textContent.replace(" €","").replace(",","."))
+            const gegenstandsmenge = parseFloat(anzahl[i].textContent)
+            sum += (gegenstandsmenge*gegenstandspreis)
+            Produktsumme[i].textContent = gegenstandsmenge*gegenstandspreis).toFixed(2) + " €"
+          }
+          summe.innerHTML = sum.toFixed(2) + " €"
+        }
+        window.onload = function () {
+          summeBerechnen();
+        }
+        for(let i = 0; i < minus.length; i++) {
+          let valueToChange = document.getElementsByClassName("anzahl")[i]
+          minus[i].onclick = function() {
+            valueToChange.textContent = Math.max(1, parseFloat(valueToChange.textContent) - 1).toFixed(2)
+            summeBerechnen();
+          }
+        }
+
+        for(let j = 0; j < plus.length; j++) {
+          let valueToChange = document.getElementsByClassName("anzahl")[j]
+          plus[j].onclick = function() {
+            valueToChange.textContent = Math.min(99, parseFloat(valueToChange.textContent) + 1).toFixed(2)
+            summeBerechnen();
+          }
+        }
+
+        console.log(sum);
+        // table.rows[i].cells[j].innerHTML stellt den Inhalt
+        // der jth-Spalte von ith-Zeile von table dar.
+        //sumAll = 0;
+        // sum1 = table.rows[1].cells[2].innerHTML*table.rows[1].cells[3].innerHTML;
+        // sum2 = table.rows[2].cells[2].innerHTML*table.rows[2].cells[3].innerHTML;
+        // sum3 = table.rows[3].cells[2].innerHTML*table.rows[3].cells[3].innerHTML;
+        // sum4 = table.rows[4].cells[2].innerHTML*table.rows[4].cells[3].innerHTML;
+        //
+        // table.rows[1].cells[4].innerHTML = sum1;
+        // table.rows[2].cells[4].innerHTML = sum2;
+        // table.rows[3].cells[4].innerHTML = sum3;
+        // table.rows[4].cells[4].innerHTML = sum4;
+        //
+        // sumAll = sum1+sum2+sum3+sum4;
+        // table.rows[5].cells[4].innerHTML = sumAll;
+        </script>
     </body>
     <footer>
       <a href="about.html"><p>Über uns</p></a>

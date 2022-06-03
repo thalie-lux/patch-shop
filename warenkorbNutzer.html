@@ -25,7 +25,7 @@
         </div>
     </header>
     <h1 style="text-align:left">Warenkorb vom Nutzer</h1>
-
+    <div id="name">    </div>
     <table id="carttable">
         <col width=50>
         <col width=200>
@@ -75,10 +75,31 @@
     </tr>
     </tfoot>
 	</table>
-  </body>
   <footer>
     <a href="about.html"><p>Über uns</p></a>
     <a href="impressum.html"><p>Impressum</p></a>
     <a href="contact.html"><p>Kontakt</p></a>
   </footer>
+  <script>
+    var queryString = new Array();
+    window.onload = function () {
+       if (queryString.length == 0) {
+           if (window.location.search.split('?').length > 1) {
+               var params = window.location.search.split('?')[1].split('&');
+               for (var i = 0; i < params.length; i++) {
+                   var key = params[i].split('=')[0];
+                   var value = decodeURIComponent(params[i].split('=')[1]);
+                   queryString[key] = value;
+               }
+           }
+       }
+       if (queryString["name"] != null) {
+           var data = "<b>Name:</b> ";
+           data += queryString["name"];
+           document.getElementById("name").innerHTML = data;
+       }
+       console.log(queryString);
+    };
+  </script>
+</body>
 </html>
