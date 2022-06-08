@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Produkt Bewertung</title>
+        <meta charset="utf-8"/>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/uikit.min.css" />
+        <script src="js/uikit.min.js"></script>
+        <script src="js/uikit-icons.min.js"></script>
+    </head>
+    <body>
+        <header>
+          <div class="uk-card uk-card-default uk-card-body uk-width-1-2@s">
+              <ul class="uk-nav-default uk-nav-center" uk-nav>
+                    <li><a href="index.html">Start</a></li>
+                    <li><a href="einProdukt.html">Patches</a></li>
+                    <li><a href="logIn.html">Anmelden </a></li>
+                    <li><a href="signIn.html">Registrierung</a></li>
+                    <li><a href="warenkorb.html">Warenkorb</a></li>
+                </ul>
+            </div>
+        </header>
+        <div class="uk-child-width-1-4 uk-text-center" uk-grid>
+
+            <div class="uk-card uk-card-default uk-card-small uk-card-body">
+                <h4>Durchschnitt n / 5</h4>
+            </div>
+
+            <div class="uk-card uk-card-default uk-card-small uk-card-body">
+                <h4>Statistik</h4>
+                <p>★★★★★ = 5x</p>
+                <p>★★★★ = 34x</p>
+                <p>★★★ = 4x</p>
+                <p>★★ = 2x</p>
+                <p>★ = 1x</p>
+            </div>
+
+        </div>
+
+        <div >
+          <h2 id="product"> </h2>
+          <table class="uk-table uk-table-middle uk-table-divider">
+              <col width=15%>
+              <col width=50%>
+              <col width=5%>
+              <thead>
+                  <tr>
+                      <th class="uk-width-small">Nutzer</th>
+                      <th>Kommentar</th>
+                      <th>Bewertung</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                      <td>Name Nachname</td>
+                      <td>Toll Toll, cooler Stoff</td>
+                      <td>4.5 / 5</td>
+                  </tr>
+                  <tr>
+                      <td>Name2 Nachname2</td>
+                      <td>Bester Patch der da war !!!12!</td>
+                      <td>5 / 5</td>
+                  </tr>
+              </tbody>
+          </table>
+        </div>
+        <div>
+          <h3>mach ein neue bewertung</h3>
+          <textarea id="comment" class="uk-textarea uk-width-1-3"></textarea>
+          <button class="uk-button uk-button-text">Abschicken</button>
+        </div>
+    <footer>
+        <a href="about.html"><p>Über uns</p></a>
+        <a href="impressum.html"><p>Impressum</p></a>
+        <a href="contact.html"><p>Kontakt</p></a>
+    </footer>
+    <script>
+      var queryString = new Array();
+      window.onload = function () {
+         if (queryString.length == 0) {
+             if (window.location.search.split('?').length > 1) {
+                 var params = window.location.search.split('?')[1].split('&');
+                 for (var i = 0; i < params.length; i++) {
+                     var key = params[i].split('=')[0];
+                     var value = decodeURIComponent(params[i].split('=')[1]);
+                     queryString[key] = value;
+                 }
+             }
+         }
+         if (queryString["product"] != null) {
+             var data = 'Produkt Bewertungen ';
+             data += queryString["product"];
+             document.getElementById("product").innerHTML = data;
+         }
+         console.log(queryString);
+      };
+    </script>
+  </body>
+</html>
