@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Login</title>
+        <title>Kollektion</title>
         <meta charset="utf-8"/>
 
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,24 +16,30 @@
             <div class="uk-card uk-card-default uk-card-body uk-width-1-2@s">
                 <ul class="uk-nav-default uk-nav-center" uk-nav>
                     <li><a href="/patch-shop">Start</a></li>
-                    <li><a href="collection.html">Kollektion</a></li>
-                    <li class="uk-active"><a href="logIn.html">Anmelden </a></li>
+                    <li class="uk-active"><a href="collection.html">Kollektion</a></li>
+                    <li><a href="logIn.html">Anmelden </a></li>
                     <li><a href="signIn.html">Registrierung</a></li>
                     <li><a href="warenkorb.html">Warenkorb</a></li>
-                    <li><a href="admin.html">@adm!n</a></li>
                 </ul>
             </div>
         </header>
-        <h1>Login</h1>
-        <form action="" method="post">
-            <label for="name">Mail</label>
-            <input type="email" name="email" id="email" placeholder="vor.nachname@mail.de">
-            <br>
-            <label for="password">Passwort</label>
-            <input type="password" name="password" id="password" placeholder="Bitte gib ein sicheres Passwort ein">
-            <br>
-            <button>Einloggen</button>
-        </form>
+
+        <h1>Unsere Kollektion</h1>
+
+        <div class="uk-child-width-1-4" uk-grid>
+            <div>
+                <div class="uk-card uk-card-default">
+                    <div class="uk-card-media-top">
+                        <img src="img/Patch-0.png" width="1800" height="1200" alt="Bild eines Patches">
+                    </div>
+                    <div class="uk-card-body">
+                        <h3 class="uk-card-title"><a href="Carpe-Diem.html">Carpe Diem</a></h3>
+                        <p>Ein Patch mit dem Aufdruck "Carpe Diem"</p>
+                        <p style="text-align:right;">5.30€</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </body>
     <footer class="uk-position-bottom-center">
